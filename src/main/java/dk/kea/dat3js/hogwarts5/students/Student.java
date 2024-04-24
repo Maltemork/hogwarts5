@@ -3,6 +3,7 @@ package dk.kea.dat3js.hogwarts5.students;
 import dk.kea.dat3js.hogwarts5.house.House;
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -45,7 +46,7 @@ public class Student {
   }
 
   public void setFirstName(String firstName) {
-    this.firstName = firstName;
+    this.firstName = (firstName!=null?capitalize(firstName) : null);
   }
 
   public String getMiddleName() {
@@ -53,7 +54,7 @@ public class Student {
   }
 
   public void setMiddleName(String middleName) {
-    this.middleName = middleName;
+    this.middleName = (middleName!=null?capitalize(middleName) : null);
   }
 
   public String getLastName() {
@@ -61,7 +62,7 @@ public class Student {
   }
 
   public void setLastName(String lastName) {
-    this.lastName = lastName;
+    this.lastName = (lastName!=null?capitalize(lastName) : null);
   }
 
   public House getHouse() {
@@ -111,14 +112,23 @@ public class Student {
       int lastSpace = fullName.lastIndexOf(' ');
 
       //Set names
-      setFirstName( fullName.substring(0, firstSpace));
-      setMiddleName(fullName.substring(firstSpace+1, lastSpace));
-      setLastName(fullName.substring(lastSpace+1));
+      setFirstName( capitalize(fullName.substring(0, firstSpace)));
+      setMiddleName( capitalize(fullName.substring(firstSpace+1, lastSpace)));
+      setLastName( capitalize(fullName.substring(lastSpace+1)));
     } else {
-      setFirstName(fullName);
+      setFirstName(capitalize(fullName));
       setMiddleName(null);
       setLastName(null);
     }
   }
 
-}
+  public String capitalize(String name) {
+    if (name.contains(" ")) {
+      int space = name.indexOf(' ');
+      return capitalize(name.substring(0, space)) + " " + capitalize(name.substring(space+1));
+    }
+      return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+    }
+  }
+
+

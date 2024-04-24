@@ -45,7 +45,7 @@ class StudentTest {
         Student student = new Student("first", "middle", "last", null, 7);
 
         // act
-        student.setFullName("Hermione Jean Granger");
+        student.setFullName("Hermione JeAn GrAngEr");
 
         // assert
         assertEquals("Hermione", student.getFirstName());
@@ -71,7 +71,7 @@ class StudentTest {
         Student student = new Student("first", "middle", "last", null, 7);
 
         // act
-        student.setFullName("Harry James James James Potter");
+        student.setFullName("Harry James jamEs JAMes Potter");
 
         // assert
         assertEquals("Harry", student.getFirstName());
