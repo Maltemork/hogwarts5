@@ -93,4 +93,32 @@ public class Student {
     return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getHouse().getName());
   }
 
+  public String getFullName() {
+      if (firstName != null) {
+        return firstName + (middleName != null ? " " + middleName : "") + (lastName != null ? " " + lastName : "");
+      }
+      return null;
+  }
+
+  public void setFullName(String fullName) {
+    if (fullName == null || fullName == "") {
+      setFirstName(null);
+      setMiddleName(null);
+      setLastName(null);
+    } else if (fullName.lastIndexOf(' ') > 0) {
+      // Find spaces
+      int firstSpace = fullName.indexOf(' ');
+      int lastSpace = fullName.lastIndexOf(' ');
+
+      //Set names
+      setFirstName( fullName.substring(0, firstSpace));
+      setMiddleName(fullName.substring(firstSpace+1, lastSpace));
+      setLastName(fullName.substring(lastSpace+1));
+    } else {
+      setFirstName(fullName);
+      setMiddleName(null);
+      setLastName(null);
+    }
+  }
+
 }
