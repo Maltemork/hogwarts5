@@ -4,7 +4,6 @@ import dk.kea.dat3js.hogwarts5.house.House;
 import dk.kea.dat3js.hogwarts5.interfaces.PersonWithNames;
 import jakarta.persistence.*;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity

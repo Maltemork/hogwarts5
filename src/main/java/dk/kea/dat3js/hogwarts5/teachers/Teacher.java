@@ -2,7 +2,6 @@ package dk.kea.dat3js.hogwarts5.teachers;
 
 import dk.kea.dat3js.hogwarts5.house.House;
 import dk.kea.dat3js.hogwarts5.interfaces.PersonWithNames;
-import dk.kea.dat3js.hogwarts5.students.Student;
 import jakarta.persistence.*;
 
 import java.util.Objects;

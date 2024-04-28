@@ -73,7 +73,8 @@ public class TeacherService {
     }
 
     private TeacherResponseDTO toDTO(Teacher teacherEntity) {
-        TeacherResponseDTO dto = new TeacherResponseDTO(
+
+        return new TeacherResponseDTO(
                 teacherEntity.getId(),
                 teacherEntity.getFirstName(),
                 teacherEntity.getMiddleName(),
@@ -82,8 +83,6 @@ public class TeacherService {
                 teacherEntity.getHouse().getName(),
                 teacherEntity.getTeachingSubject()
         );
-
-        return dto;
     }
 
     private Teacher fromDTO(TeacherRequestDTO teacherDTO) {
