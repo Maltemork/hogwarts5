@@ -106,6 +106,18 @@ class StudentTest {
     }
 
     @Test
+    void setNameWithSpaceAtEnd() {
+        // arrange
+        Student student = new Student("first", "middle", "last", null, 7);
+
+        // act
+        student.setFullName("Malte Mørkeberg ");
+
+        //assert
+        assertEquals("Malte Mørkeberg", student.getFullName());
+    }
+
+    @Test
     void setFullName() {
     }
 }

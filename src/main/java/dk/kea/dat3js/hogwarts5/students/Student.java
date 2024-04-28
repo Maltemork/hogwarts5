@@ -1,13 +1,14 @@
 package dk.kea.dat3js.hogwarts5.students;
 
 import dk.kea.dat3js.hogwarts5.house.House;
+import dk.kea.dat3js.hogwarts5.interfaces.PersonWithNames;
 import jakarta.persistence.*;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Student implements PersonWithNames {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -26,9 +27,9 @@ public class Student {
   }
 
   public Student(String firstName, String middleName, String lastName, House house, int schoolYear) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
+    this.setFirstName(firstName);
+    this.setMiddleName(middleName);
+    this.setLastName(lastName);
     this.house = house;
     this.schoolYear = schoolYear;
   }
@@ -94,41 +95,7 @@ public class Student {
     return Objects.hash(getFirstName(), getMiddleName(), getLastName(), getHouse().getName());
   }
 
-  public String getFullName() {
-      if (firstName != null) {
-        return firstName + (middleName != null ? " " + middleName : "") + (lastName != null ? " " + lastName : "");
-      }
-      return null;
-  }
 
-  public void setFullName(String fullName) {
-    if (fullName == null || fullName == "") {
-      setFirstName(null);
-      setMiddleName(null);
-      setLastName(null);
-    } else if (fullName.lastIndexOf(' ') > 0) {
-      // Find spaces
-      int firstSpace = fullName.indexOf(' ');
-      int lastSpace = fullName.lastIndexOf(' ');
-
-      //Set names
-      setFirstName( capitalize(fullName.substring(0, firstSpace)));
-      setMiddleName( capitalize(fullName.substring(firstSpace+1, lastSpace)));
-      setLastName( capitalize(fullName.substring(lastSpace+1)));
-    } else {
-      setFirstName(capitalize(fullName));
-      setMiddleName(null);
-      setLastName(null);
-    }
-  }
-
-  public String capitalize(String name) {
-    if (name.contains(" ")) {
-      int space = name.indexOf(' ');
-      return capitalize(name.substring(0, space)) + " " + capitalize(name.substring(space+1));
-    }
-      return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-    }
   }
 
 
