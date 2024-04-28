@@ -123,10 +123,24 @@ class TeacherTest {
         Teacher teacher = new Teacher("Minerva McGonagall", null, "Enchanting");
 
         // act
-        String expectedName = teacher.getLastName();
+        String returnedName = teacher.getLastName();
 
         // assert
-        assertEquals("McGonagall", expectedName);
+        assertEquals("McGonagall", returnedName);
+    }
+
+    @Test
+    void setNameWithDashSomewhere() {
+        // arrange
+        Teacher teacher = new Teacher("justin finch-mckinley", null, "Advanced Farting");
+
+        // act
+        String returnedName = teacher.getFullName();
+
+        // assert
+        assertEquals("Justin Finch-McKinley", returnedName);
+
+
     }
 
     @Test

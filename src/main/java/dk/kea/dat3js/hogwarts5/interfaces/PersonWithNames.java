@@ -47,13 +47,45 @@ public interface PersonWithNames {
     }
 
     default String capitalize(String name) {
-        if (name.trim().contains(" ")) {
-            int space = name.trim().indexOf(' ');
-            return capitalize(name.substring(0, space)) + " " + capitalize(name.substring(space+1));
-        } else if (!name.isEmpty()) {
-            return name.trim().substring(0, 1).toUpperCase() + name.trim().substring(1).toLowerCase();
-        } else {
+
+        // return if null
+        if (name == null || name.isEmpty()) {
             return name;
         }
+
+        // Check if name starts with "Mc"
+        if (name.length() > 2 && name.substring(0, 2).equalsIgnoreCase("mc")) {
+            return "Mc" + name.substring(2, 3).toUpperCase() + name.substring(3).toLowerCase();
+        }
+
+        // Capitalize each part separated by space or dash
+        StringBuilder result = new StringBuilder();
+        String[] parts = name.split("[\\s-]");
+        for (int i = 0; i < parts.length; i++) {
+            String part = parts[i];
+            if (!part.isEmpty()) {
+                if (i > 0 && part.length() > 2 && part.substring(0, 2).equalsIgnoreCase("mc")) {
+                    // Handle "Mc" part in non-first parts
+                    result.append("Mc").append(part.substring(2, 3).toUpperCase()).append(part.substring(3).toLowerCase());
+                } else {
+                    result.append(part.substring(0, 1).toUpperCase()).append(part.substring(1).toLowerCase());
+                }
+                // Add dash if it's not the last part and if the current part ends with a dash
+                if (i < parts.length - 1 && name.charAt(name.indexOf(part) + part.length()) == '-') {
+                    result.append("-");
+                } else if (i < parts.length - 1) {
+                    result.append(" ");
+                }
+            }
+        }
+
+        return result.toString().trim(); // Trim leading/trailing whitespace and return string.
     }
+
+
+
+
+
+
+
 }
