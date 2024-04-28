@@ -1,6 +1,4 @@
 package dk.kea.dat3js.hogwarts5.students;
-
-import dk.kea.dat3js.hogwarts5.house.House;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
