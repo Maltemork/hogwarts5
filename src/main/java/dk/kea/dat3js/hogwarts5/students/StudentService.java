@@ -20,6 +20,10 @@ public class StudentService {
     return studentRepository.findAll().stream().map(this::toDTO).toList();
   }
 
+  public List<StudentResponseDTO> findAllByName(String firstName, String lastName) {
+    return studentRepository.findAllByFirstNameAndLastName(firstName, lastName).stream().map(this::toDTO).toList();
+  }
+
   public Optional<StudentResponseDTO> findById(int id) {
     return studentRepository.findById(id).map(this::toDTO);
   }
